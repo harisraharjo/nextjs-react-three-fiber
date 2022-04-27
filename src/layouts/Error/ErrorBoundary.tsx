@@ -4,6 +4,7 @@ import type {
   PropsWithRef,
   PropsWithChildren,
   ErrorInfo,
+  ReactNode,
 } from "react";
 
 import { Component } from "react";
@@ -98,7 +99,8 @@ export class ErrorBoundary extends Component<
           resetErrorBoundary: this.resetErrorBoundary,
         });
 
-        return typeof comp === "undefined" ? null : comp;
+        //because void === undefined
+        return comp as ReactNode;
       }
 
       return null;

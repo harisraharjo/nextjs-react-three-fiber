@@ -2,8 +2,8 @@ import { useState, startTransition } from "react";
 import type { ReactNode, SetStateAction } from "react";
 import { RootContextProvider } from "./hooks/useRootContext";
 import dynamic from "next/dynamic";
-import type { FallbackProps } from "@layouts/Error/ErrorBoundary";
 import { useConstant } from "@lib/useConstant";
+import { CanvasProps } from "./Canvas";
 const Canvas = dynamic(
   () =>
     import(
@@ -16,7 +16,7 @@ type FiberRoot = {
   children: ReactNode;
 };
 
-const errorFallbackRender = ({ error, resetErrorBoundary: _ }: FallbackProps) =>
+const errorFallbackRender: CanvasProps["errorFallbackRender"] = (error) =>
   `Oops, something went wrong! ${error}`;
 
 export const FiberRoot = ({ children }: FiberRoot) => {

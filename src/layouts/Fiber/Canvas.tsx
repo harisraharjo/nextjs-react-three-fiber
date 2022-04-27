@@ -6,17 +6,14 @@ import { useEffect, useRef, useState, startTransition } from "react";
 import { mergeRefs } from "@lib/mergeRefs";
 import { useRoot } from "./hooks/useRoot";
 import { useMeasure } from "@hooks";
-import {
-  ErrorBoundary,
-  type FallbackProps,
-} from "@layouts/Error/ErrorBoundary";
+import { ErrorBoundary, type OnError } from "@layouts/Error/ErrorBoundary";
 
+type ErrorMessage = Parameters<OnError>["0"];
 export type CanvasProps = {
   children: ReactNode;
-  errorFallbackRender: ({
-    error,
-    resetErrorBoundary,
-  }: FallbackProps) => ReturnType<ErrorBoundary["render"]>;
+  errorFallbackRender: (
+    error: ErrorMessage
+  ) => ReturnType<ErrorBoundary["render"]>;
 };
 
 export const Canvas = ({ children, errorFallbackRender }: CanvasProps) => {
@@ -24,7 +21,7 @@ export const Canvas = ({ children, errorFallbackRender }: CanvasProps) => {
   const [containerRef, { width, height }] = useMeasure(true);
   const rootConfig = useRef<RenderProps<HTMLCanvasElement>>(null!);
   const meshRef = useRef<HTMLDivElement>(null!);
-  const [error, setError] = useState<FallbackProps | null>(null);
+  const [error, setError] = useState<ErrorMessage | null>(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   useEffect(() => {
@@ -79,7 +76,11 @@ export const Canvas = ({ children, errorFallbackRender }: CanvasProps) => {
 
     root.current.configure(rootConfig.current);
     root.current.render(
-      <ErrorBoundary fallbackRender={setError}>
+      <ErrorBoundary
+        onError={setError}
+        resetKeys={[error]}
+        onResetKeysChange={() => setError(null)}
+      >
         {children}
         {isLoaded && <ambientLight intensity={0.5} />}
       </ErrorBoundary>
