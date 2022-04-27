@@ -3,7 +3,7 @@ import type { ReactNode, SetStateAction } from "react";
 import { RootContextProvider } from "./hooks/useRootContext";
 import dynamic from "next/dynamic";
 import { useConstant } from "@lib/useConstant";
-import { CanvasProps } from "./Canvas";
+import type { CanvasProps } from "./Canvas";
 const Canvas = dynamic(
   () =>
     import(

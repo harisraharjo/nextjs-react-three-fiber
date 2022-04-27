@@ -93,17 +93,15 @@ export class ErrorBoundary extends Component<
     if (error !== null) {
       const { fallbackRender } = this.props;
 
-      if (fallbackRender) {
-        const comp = fallbackRender({
-          error,
-          resetErrorBoundary: this.resetErrorBoundary,
-        });
+      if (!fallbackRender) return null;
 
-        //because void === undefined
-        return comp as ReactNode;
-      }
+      const comp = fallbackRender({
+        error,
+        resetErrorBoundary: this.resetErrorBoundary,
+      });
 
-      return null;
+      //because void === undefined
+      return comp as ReactNode;
     }
 
     return this.props.children;
