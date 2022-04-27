@@ -30,7 +30,7 @@ const Component3d = () => {
 
 ### Add 3d Component into a page
 
-Simply add either **useRender** or **useRenderWithContext** hooks inside your component and put it into nextjs page as you normally would.
+Simply add either **useRender** or **useRenderWithContext** hooks inside your component and put it into nextjs page normally.
 
 ```jsx
 const NormalComponent = () => {

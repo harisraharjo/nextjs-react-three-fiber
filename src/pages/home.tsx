@@ -10,9 +10,9 @@ const Home: NextPage = () => {
   );
 
   return (
-    <div style={{ background: "darkgreen", paddingLeft: "10px" }}>
+    <div style={{ background: "darkgreen", textAlign: "center" }}>
       <Square key="square2" model={model}>
-        Example 2: 3d components + useRouter
+        3d components + useRouter
       </Square>
       <button
         style={{ position: "absolute", left: "5%", top: "50%", zIndex: 10 }}

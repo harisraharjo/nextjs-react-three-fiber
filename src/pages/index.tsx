@@ -13,12 +13,12 @@ type Props = NextPage & {
 
 const Index = ({ router }: Props) => {
   return (
-    <section style={{ background: "maroon", paddingLeft: "10px" }}>
+    <section style={{ background: "maroon", textAlign: "center" }}>
       <FiberSection>
         <Cube1 router={router} route="/home" />
         <OrbitControls />
       </FiberSection>
-      Example 1: Plain 3d components
+      Plain 3d components
     </section>
   );
 };
