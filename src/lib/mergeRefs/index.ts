@@ -1,5 +1,6 @@
 import type { MutableRefObject, LegacyRef, RefCallback } from "react";
 
+// https://github.com/gregberge/react-merge-refs
 export function mergeRefs<T = any>(
   ...refs: Array<MutableRefObject<T> | LegacyRef<T>>
 ): RefCallback<T> {

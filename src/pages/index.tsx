@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import type { NextRouter } from "next/router";
 
 const FiberSection = dynamic(() => import("@layouts/Fiber/FiberSection"));
-const Box = dynamic(() => import("@canvas/Box"));
+const Cube1 = dynamic(() => import("@canvas/Cube1"));
 const OrbitControls = dynamic(
   () => import("@lib/react-three/drei/orbitControls")
 );
@@ -13,9 +13,9 @@ type Props = NextPage & {
 
 const Index = ({ router }: Props) => {
   return (
-    <section style={{ background: "maroon" }}>
+    <section style={{ background: "maroon", paddingLeft: "10px" }}>
       <FiberSection>
-        <Box router={router} route="/home" />
+        <Cube1 router={router} route="/home" />
         <OrbitControls />
       </FiberSection>
       Example 1: Plain 3d components

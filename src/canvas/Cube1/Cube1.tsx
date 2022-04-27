@@ -16,7 +16,7 @@ type Props = {
   router: NextRouter;
   route: NextRouter["route"];
 };
-export const Box = ({ route, router }: Props) => {
+export const Cube1 = ({ route, router }: Props) => {
   useCatalogues(catalogues);
 
   const mesh = useRef(null);

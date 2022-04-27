@@ -77,8 +77,10 @@ export function useMeasure(
   const mounted = useRef(false);
   useEffect(() => {
     mounted.current = true;
-    return () => void (mounted.current = false);
-  });
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   // memoize handlers, so event-listeners know when they should update
   const [forceRefresh, onChange] = useMemo(() => {
@@ -90,7 +92,7 @@ export function useMeasure(
         const { element, lastBounds } = state.current;
         let { left, top, width, height, bottom, right, x, y } =
           element.getBoundingClientRect();
-        const size = {
+        let size = {
           left,
           top,
           width,
@@ -162,7 +164,7 @@ export function useMeasure(
     if (!node || node === state.current.element) return;
     removeListeners();
     state.current.element = node;
-    state.current.scrollContainers = findScrollContainers(node);
+    state.current.scrollContainers = getScrollContainers(node);
     addListeners();
   };
 
@@ -187,7 +189,9 @@ function useOnWindowResize(onWindowResize: (event: Event) => void) {
   useEffect(() => {
     const cb = onWindowResize;
     window.addEventListener("resize", cb);
-    return () => void window.removeEventListener("resize", cb);
+    return () => {
+      window.removeEventListener("resize", cb);
+    };
   }, [onWindowResize]);
 }
 function useOnWindowScroll(onScroll: () => void, enabled: boolean) {
@@ -195,14 +199,13 @@ function useOnWindowScroll(onScroll: () => void, enabled: boolean) {
     if (enabled) {
       const cb = onScroll;
       window.addEventListener("scroll", cb, { capture: true, passive: true });
-      //   return () => void window.removeEventListener("scroll", cb, true);
       window.removeEventListener("scroll", cb, true);
     }
   }, [onScroll, enabled]);
 }
 
 // Returns a list of scroll offsets
-function findScrollContainers(
+function getScrollContainers(
   element: HTMLOrSVGElement | null
 ): HTMLOrSVGElement[] {
   const result: HTMLOrSVGElement[] = [];
@@ -215,7 +218,7 @@ function findScrollContainers(
     }
   }
 
-  result.push(...findScrollContainers(element.parentElement));
+  result.push(...getScrollContainers(element.parentElement));
   return result;
 }
 

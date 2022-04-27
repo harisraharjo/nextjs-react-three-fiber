@@ -40,10 +40,8 @@
       "@i18n": ["./i18n"],
       "@test/*": ["test/*"],
       "@test": ["test"],
-      "@customTypes/*": ["src/types/*"],
-      "@customTypes": ["src/types"],
-      "@config/*": ["src/config/*"],
-      "@config": ["src/config"],
+      "@typings/*": ["src/types/*"],
+      "@typings": ["src/types"],
       "@utils/*": ["src/utils/*"],
       "@utils": ["src/utils"]
     }

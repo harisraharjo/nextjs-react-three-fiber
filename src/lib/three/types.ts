@@ -1,5 +1,5 @@
 import type * as THREE from "three";
-import { FunctionPropertyNames } from "@customTypes";
+import { FunctionPropertyNames } from "@typings";
 
 type Three = typeof THREE;
 

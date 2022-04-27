@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
-type ResultBox<T> = { v: T };
 // https://github.com/Andarist/use-constant
+type ResultBox<T> = { v: T };
 export function useConstant<T>(fn: () => T): T {
   const ref = useRef<ResultBox<T>>();
 

@@ -19,7 +19,7 @@ const catalogues: Partial<Catalogues> = {
   BoxBufferGeometry,
 } as const;
 
-export const LongBox = () => {
+export const Cube2 = () => {
   useCatalogues(catalogues);
   return <Model />;
 };
