@@ -1,6 +1,10 @@
 # Minimal React Three Fiber Next js
 
-A minimal starter for React Three Fiber + Next js
+A minimal starter for React Three Fiber + Next js with single canvas instance for every page to enable seamless page navigation experience.
+
+### Demo
+[<img width="553" alt="preview" src="https://user-images.githubusercontent.com/34530664/165458901-02ef2603-0531-43bf-86fe-a46755b03116.png">](https://nextjs-react-three-fiber.vercel.app/)
+
 
 ### Features
 
