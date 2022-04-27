@@ -18,7 +18,7 @@ const Index = ({ router }: Props) => {
         <Cube1 router={router} route="/home" />
         <OrbitControls />
       </FiberSection>
-      Plain 3d components
+      Plain 3d component
     </section>
   );
 };
